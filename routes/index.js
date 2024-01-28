@@ -4,46 +4,8 @@ require('../log');
 const fs = require('fs');
 const utf8 = require('utf8');
 const ytdl = require('ytdl-core');
-//const usetube = require('usetube');
 const ytsr = require('ytsr');
 
-
-
-/*router.get('/search', async (req, res) => {
-    
-    let limit = req.query.limit, song = req.query.song_title, videoInfo = [], objeto;
-    if (!limit || !song) return res.send('Missing parameters.');
-    
-    try {
-        const filters1 = await ytsr.getFilters(req.query.song_title);
-        const filter1 = filters1.get('Type').get('Video');
-        const searchResults = await ytsr(filter1.url);
-
-        if (!searchResults) {
-            return res.send('NO OK');
-        }
-
-        for (let i = 0;i < limit;i++) {
-            const videoItem = searchResults.items[i];
-            const uniqueIds = new Set();
-            if (videoItem.id) {
-                objeto = {
-                    videoId: videoItem.id,
-                    Title: utf8.encode(videoItem.title)
-                };
-                videoInfo.push(objeto);
-            }
-            videoInfo.push(objeto);
-        }
-
-        res.render('main/index', {
-            videos: videoInfo
-        });
-    } catch (error) {
-        console.error('Error en la búsqueda:', error);
-        return res.status(500).send('Se produjo un error en la búsqueda.');
-    }
-});*/
 
 router.get('/search', async (req, res) => {
     let limit = req.query.limit, song = req.query.song_title, videoInfo = [], objeto;
@@ -70,7 +32,6 @@ router.get('/search', async (req, res) => {
             }
         }
 
-        // Filtrar los elementos que tienen 'videoId' y 'Title' definidos
         videoInfo = videoInfo.filter(item => item.videoId && item.Title);
 
         res.render('main/index', {
@@ -82,33 +43,10 @@ router.get('/search', async (req, res) => {
     }
 });
 
-router.get('/searcsdh', async (req, res)  => {
-    let limit = req.query.limit,song = req.query.song_title, videoInfo = [], objeto;
-    if(!limit || !song) return res.send('Missing parameters.');
-    await ytsr(req.query.song_title).then(a => {
-        if(!a) return res.send('NO OK');
-        for(let i = 0;i < limit;i++)
-        {
-            if(a) return console.log(a);
-            /*if(a.items[i] == undefined) continue;
-            objeto = {
-                videoId: a.items[i].id,
-                Title: utf8.encode(a.items[i].title)
-            };
-            videoInfo.push(objeto);*/
-        }
-        res.render('main/index', {
-            videos: videoInfo
-        })
-    })
-    .catch(error => {
-        // Maneja errores si los hay
-        console.error(error);
-      });
-});
+
 
 router.get('.env', async(req, res) => {
-  res.send('Bobito');
+  res.send('Archivo no disponible para acceso publico');
 });
 
 router.get('/download', async(req, res) => {
@@ -131,7 +69,6 @@ router.get('/download', async(req, res) => {
                     directoryDownload: `public/mp3/`,
                     title: videoId
                 },'',OnClose)
-                //ytdl(`http://www.youtube.com/watch?v=${videoId}`).pipe(fs.createWriteStream(`public/mp3/${videoId}.mp3`));
             }
             catch(e)
             {
