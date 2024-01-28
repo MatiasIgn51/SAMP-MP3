@@ -6,7 +6,6 @@ const utf8 = require('utf8');
 const ytdl = require('ytdl-core');
 const ytsr = require('ytsr');
 
-
 router.get('/search', async (req, res) => {
     let limit = req.query.limit, song = req.query.song_title, videoInfo = [], objeto;
     if (!limit || !song) return res.send('Missing parameters.');
@@ -42,8 +41,6 @@ router.get('/search', async (req, res) => {
         return res.status(500).send('Se produjo un error en la búsqueda.');
     }
 });
-
-
 
 router.get('.env', async(req, res) => {
   res.send('Archivo no disponible para acceso publico');
