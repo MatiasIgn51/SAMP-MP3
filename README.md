@@ -1,6 +1,6 @@
 Server based on NodeJS for song downloads through Youtube, the songs are downloaded to your server where you have this hosted and can be accessed from http://url:port/mp3/file.mp3
 
-This can be used for SA:MP/OpenMP servers based on "Zone Gamemode", you just need to include the base code for it to work.
+This can be used for SA:MP/OpenMP servers based on "Zone" Gamemode or "Super RP" GameMode, you just need to include the base code for it to work.
 
 
 Different URLs where you should point:
